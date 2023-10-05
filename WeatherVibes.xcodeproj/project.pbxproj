@@ -11,6 +11,9 @@
 		678466662ACC2901002A2371 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678466652ACC2901002A2371 /* ContentView.swift */; };
 		678466682ACC2902002A2371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 678466672ACC2902002A2371 /* Assets.xcassets */; };
 		6784666C2ACC2902002A2371 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6784666B2ACC2902002A2371 /* Preview Assets.xcassets */; };
+		67A353EE2ACC422A001DCC88 /* FrontpageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353ED2ACC422A001DCC88 /* FrontpageView.swift */; };
+		67A353F12ACC475A001DCC88 /* WeatherVibesLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */; };
+		67A353F62ACD7D59001DCC88 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353F52ACD7D59001DCC88 /* ApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,10 @@
 		678466672ACC2902002A2371 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		678466692ACC2902002A2371 /* WeatherVibes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherVibes.entitlements; sourceTree = "<group>"; };
 		6784666B2ACC2902002A2371 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		67A353ED2ACC422A001DCC88 /* FrontpageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontpageView.swift; sourceTree = "<group>"; };
+		67A353EF2ACC45BC001DCC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesLocationManager.swift; sourceTree = "<group>"; };
+		67A353F52ACD7D59001DCC88 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +59,15 @@
 		678466622ACC2901002A2371 /* WeatherVibes */ = {
 			isa = PBXGroup;
 			children = (
+				67A353EF2ACC45BC001DCC88 /* Info.plist */,
+				67A353EC2ACC41EB001DCC88 /* Views */,
 				678466632ACC2901002A2371 /* WeatherVibesApp.swift */,
 				678466652ACC2901002A2371 /* ContentView.swift */,
 				678466672ACC2902002A2371 /* Assets.xcassets */,
 				678466692ACC2902002A2371 /* WeatherVibes.entitlements */,
 				6784666A2ACC2902002A2371 /* Preview Content */,
+				67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */,
+				67A353F52ACD7D59001DCC88 /* ApiClient.swift */,
 			);
 			path = WeatherVibes;
 			sourceTree = "<group>";
@@ -67,6 +78,14 @@
 				6784666B2ACC2902002A2371 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		67A353EC2ACC41EB001DCC88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				67A353ED2ACC422A001DCC88 /* FrontpageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A353EE2ACC422A001DCC88 /* FrontpageView.swift in Sources */,
 				678466662ACC2901002A2371 /* ContentView.swift in Sources */,
 				678466642ACC2901002A2371 /* WeatherVibesApp.swift in Sources */,
+				67A353F12ACC475A001DCC88 /* WeatherVibesLocationManager.swift in Sources */,
+				67A353F62ACD7D59001DCC88 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +296,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherVibes/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Vi trenger din lokasjon for å hente været der du er, akkurat nå.\"";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -312,6 +336,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherVibes/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Vi trenger din lokasjon for å hente været der du er, akkurat nå.\"";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
