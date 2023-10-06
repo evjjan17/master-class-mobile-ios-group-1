@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerView: View {
     
-    @State var secondsPlayed = 130
+    @State var secondsPlayed = 0
     @State var isPlaying = false
     
     var podcastEpisode: Page.PageSection.SectionIncluded.SectionPlug.PodcastEpisode

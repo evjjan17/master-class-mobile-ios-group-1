@@ -10,12 +10,12 @@ import CoreLocation
 
 // TODO:
 
-// [] Lag ViewModel for Plugs
-// [] Endre weatherCategoryDict til å bruke enums
 // [x] Liste ut plugs
 // [x] Vise værsymbol og værdata
 // [x] Navigere til valgt plug
 // [x] Lag detaljeside
+// [] Lag ViewModel for Plugs og episode til PlayerView
+// [] Endre weatherCategoryDict til å bruke enums
 // [] slå sammen alle sections fra en kategori
 
 struct FrontpageView: View {
@@ -81,7 +81,14 @@ struct FrontpageView: View {
                                     }
                                     label: {
                                         HStack {
-                                            Text(podcastEpisode.podcastTitle)
+                                            VStack(spacing: 8) {
+                                                Text(podcastEpisode.podcastTitle)
+                                                    .font(.title3)
+                                                    .bold()
+                                                Text(podcastEpisode.podcastEpisodeTitle)
+                                                    .font(.system(size: 14))
+                                            }
+                                            .padding()
                                             Spacer()
                                             AsyncImage(url: URL(string: podcastEpisode.imageUrl)) { result in
                                                 if result.error != nil {
@@ -90,13 +97,13 @@ struct FrontpageView: View {
                                                 if let image = result.image {
                                                     image
                                                         .resizable()
-                                                        .frame(minWidth: 100)
-                                                        .scaledToFit()
+                                                        .aspectRatio(16 / 9, contentMode: .fit)
+                                                        .frame(width: 150)
                                                         .cornerRadius(10)
                                                 }
                                             }
+                                            .padding(.trailing, 8)
                                         }
-                                        .padding()
                                         .background(Color(red: 0.2, green: 0.3, blue: 0.3))
                                         .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                                         .cornerRadius(10)
@@ -156,7 +163,7 @@ struct FrontpageView: View {
     }
     
     private func determineCategory(weather: Weather) -> String? {
-        if weather.precipitation.value > 1 {
+        if weather.precipitation.value > 0.8 {
             self.weatherIcon = .rain
             return weatherCategoryDict["Rainy"]
         } else if weather.wind.speed > 10 {
