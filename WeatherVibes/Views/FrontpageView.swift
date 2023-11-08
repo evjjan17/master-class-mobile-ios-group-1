@@ -14,8 +14,9 @@ import CoreLocation
 // [x] Vise værsymbol og værdata
 // [x] Navigere til valgt plug
 // [x] Lag detaljeside
-// [] Lag ViewModel for Plugs og episode til PlayerView
+// [x] Bruk faktiske værikonene fra YR api'et
 // [] Endre weatherCategoryDict til å bruke enums
+// [] Lag ViewModel for Plugs og episode til PlayerView
 // [] slå sammen alle sections fra en kategori
 
 struct FrontpageView: View {
@@ -24,15 +25,37 @@ struct FrontpageView: View {
     @State var weather: Weather?
     @State var plugs: [Page.PageSection.SectionIncluded.SectionPlug] = []
     @State var locationName: CLPlacemark?
-    @State var weatherIcon: WeatherIcons?
+    @State var weatherCategory: WeatherCategory = .unknown
     
-    let weatherCategoryDict = ["Rainy": "dokumentar", "Windy": "forstaa", "Cold": "kultur", "Sunny": "humor"]
+    let weatherCategoryDict: [WeatherCategory: Category] = [.rain: .dokumentar, .clouded: .forstaa, .snow: .kultur, .sun: .humor, .partlyCloudy: .hoerespill]
+    let weatherIconDict: [WeatherCategory: String] = [.rain: "cloud.drizzle", .clouded: "cloud", .snow: "snowflake", .sun: "sun.max", .partlyCloudy: "cloud.sun"]
     
-    enum WeatherIcons: String {
-        case rain = "cloud.drizzle"
-        case wind = "wind"
-        case cold = "snowflake"
-        case sun = "sun.max"
+    enum Category: String {
+        case dokumentar
+        case forstaa
+        case kultur
+        case humor
+        case hoerespill
+        
+        var displayName: String
+        {
+            switch self {
+            case .dokumentar: "Dokumentar"
+            case .forstaa: "Nyheter og sport"
+            case .kultur: "Kultur"
+            case .humor: "Humor"
+            case .hoerespill: "Hørespill"
+            }
+        }
+    }
+    
+    enum WeatherCategory: String {
+        case rain
+        case clouded
+        case snow
+        case sun
+        case partlyCloudy = "partly_clouded"
+        case unknown
     }
     
     var body: some View {
@@ -61,12 +84,17 @@ struct FrontpageView: View {
                         }
                         Spacer()
                         VStack {
-                            Image(systemName: weatherIcon?.rawValue ?? "cloud")
+                            Image(systemName: weatherIconDict[self.weatherCategory] ?? "")
                                 .font(.system(size: 100))
                                 .padding(.trailing, 20)
                         }
                     }
                     .padding(.horizontal, 26)
+                }
+                if let category = weatherCategoryDict[self.weatherCategory]?.displayName {
+                    Text(category)
+                        .font(.title3)
+                        .foregroundStyle(.white)
                 }
                 VStack{
                     Divider()
@@ -126,96 +154,33 @@ struct FrontpageView: View {
                     guard let placemark = placemark?.first else { return }
                     self.locationName = placemark
                 }
-                if let weather = try? await fetchWeather(location: coordinate) {
+                if let weather = try? await ApiClient.fetchWeather(location: coordinate) {
                     self.weather = weather
-                    if let category = determineCategory(weather: weather) {
-                        try? await fetchPlugs(from: category)
+                    determineWeatherCategory(weather: weather)
+                    if let plugs = try? await ApiClient.fetchPlugs(from: weatherCategoryDict[self.weatherCategory]?.rawValue ?? "forstaa") {
+                        self.plugs = plugs
                     }
                 }
             }
         }
     }
-    
-    private func fetchWeather(location: CLLocationCoordinate2D) async throws -> Weather {
-        let endpoint: URL = URL(string: "https://www.yr.no/api/v0/locations/\(location.latitude), \(location.longitude)/forecast/currenthour?language=nb")!
-        let request = URLRequest(url: endpoint)
-        let (data, _) = try await URLSession.shared.data(for: request)
         
-        let weather = try JSONDecoder().decode(Weather.self, from: data)
-        return weather
-    }
-    
-    private func fetchPlugs(from category: String) async throws {
-        let endpoint: URL = URL(string: "https://psapi.nrk.no/radio/pages/\(category)")!
-        var request = URLRequest(url: endpoint)
-        request.setValue("application/json;api-version=3.4", forHTTPHeaderField: "Content-Type")
-        let (data, _) = try await URLSession.shared.data(for: request)
-
-        do {
-            let page = try JSONDecoder().decode(Page.self, from: data)
-            print(page)
-            //if let plugs = page.sections.included.plugs{
-            self.plugs = page.sections[1].included.plugs
-           // }
-        } catch {
-            print(error)
-        }
-    }
-    
-    private func determineCategory(weather: Weather) -> String? {
-        if weather.precipitation.value > 0.8 {
-            self.weatherIcon = .rain
-            return weatherCategoryDict["Rainy"]
-        } else if weather.wind.speed > 10 {
-            self.weatherIcon = .wind
-            return weatherCategoryDict["Windy"]
-        } else if weather.temperature.value < 10 {
-            self.weatherIcon = .cold
-            return weatherCategoryDict["Cold"]
-        }
-        
-        self.weatherIcon = .sun
-        return weatherCategoryDict["Sunny"]
-    }
-}
-
-struct Weather: Decodable {
-    let temperature: WeatherTemperature
-    let precipitation: WeatherPrecipitation
-    let wind: WeatherWind
-    
-    struct WeatherTemperature: Decodable {
-        let value: Double
-    }
-    
-    struct WeatherPrecipitation: Decodable {
-        let value: Double
-    }
-    
-    struct WeatherWind: Decodable {
-        let speed: Double
-    }
-}
-
-struct Page: Decodable {
-    let sections: [PageSection]
-    
-    struct PageSection: Decodable {
-        let included: SectionIncluded
-        
-        struct SectionIncluded: Decodable {
-            let plugs: [SectionPlug]
-            let title: String
-            
-            struct SectionPlug: Decodable, Identifiable {
-                let id: String
-                var podcastEpisode: PodcastEpisode?
-                
-                struct PodcastEpisode: Decodable {
-                    let imageUrl: String
-                    let podcastTitle: String
-                    let podcastEpisodeTitle: String
+    private func determineWeatherCategory(weather: Weather) {
+        if let path = Bundle.main.path(forResource: "weatherSymbolMappings", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                if let jsonResult = jsonResult as? Dictionary<String, [String]> {
+                    let weatherSymbol = weather.symbolCode.next1Hour
+                    for (weather, weatherSymbols) in jsonResult {
+                        if weatherSymbols.contains(weatherSymbol) {
+                            self.weatherCategory = WeatherCategory(rawValue: weather) ?? .unknown
+                        }
+                    }
                 }
+            }
+            catch {
+                //
             }
         }
     }

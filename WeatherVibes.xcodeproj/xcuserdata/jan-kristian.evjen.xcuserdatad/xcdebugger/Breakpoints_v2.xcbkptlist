@@ -3,4 +3,163 @@
    uuid = "1129771E-4593-48FB-AF38-45458E334A37"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "209C5B92-5AE7-47B1-8DFE-444D26583051"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherVibes/Views/PlayerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "209C5B92-5AE7-47B1-8DFE-444D26583051 - fa1279ccd2ab6cf8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "209C5B92-5AE7-47B1-8DFE-444D26583051 - 3395229a63878ef9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "42FCCECD-8803-436F-8584-2EEE4C27F42A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherVibes/ApiClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "fetchManifest(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherVibes/Views/PlayerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3 - f914aa1f049338b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in WeatherVibes.PlayerView.togglePlay() -&gt; ()"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "764">
+               </Location>
+               <Location
+                  uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3 - fa1279ccd2ab6b65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "872">
+               </Location>
+               <Location
+                  uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3 - 3395229a63878964"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "872">
+               </Location>
+               <Location
+                  uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3 - fa1279ccd2ab6b65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "888">
+               </Location>
+               <Location
+                  uuid = "7C9C2428-2F86-4491-84C9-2EE0979C69A3 - 3395229a63878964"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #2 @Sendable () async -&gt; () in WeatherVibes.PlayerView.body.getter : some"
+                  moduleName = "WeatherVibes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jan-kristian.evjen/Documents/dev/WeatherVibes/WeatherVibes/Views/PlayerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "888">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

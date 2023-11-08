@@ -15,6 +15,10 @@
 		67A353F12ACC475A001DCC88 /* WeatherVibesLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */; };
 		67A353F62ACD7D59001DCC88 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353F52ACD7D59001DCC88 /* ApiClient.swift */; };
 		67A353F82ACED239001DCC88 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A353F72ACED239001DCC88 /* PlayerView.swift */; };
+		67E580E52AFBA9E6002E0621 /* weatherSymbolMappings.json in Resources */ = {isa = PBXBuildFile; fileRef = 67E580E42AFBA9E6002E0621 /* weatherSymbolMappings.json */; };
+		67E580E72AFBB544002E0621 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580E62AFBB544002E0621 /* Weather.swift */; };
+		67E580E92AFBB56B002E0621 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580E82AFBB56B002E0621 /* Page.swift */; };
+		67E580EC2AFBC976002E0621 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580EB2AFBC976002E0621 /* Manifest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesLocationManager.swift; sourceTree = "<group>"; };
 		67A353F52ACD7D59001DCC88 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		67A353F72ACED239001DCC88 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		67E580E42AFBA9E6002E0621 /* weatherSymbolMappings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherSymbolMappings.json; sourceTree = "<group>"; };
+		67E580E62AFBB544002E0621 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		67E580E82AFBB56B002E0621 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		67E580EB2AFBC976002E0621 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +69,15 @@
 		678466622ACC2901002A2371 /* WeatherVibes */ = {
 			isa = PBXGroup;
 			children = (
-				67A353EF2ACC45BC001DCC88 /* Info.plist */,
-				67A353EC2ACC41EB001DCC88 /* Views */,
 				678466632ACC2901002A2371 /* WeatherVibesApp.swift */,
-				678466652ACC2901002A2371 /* ContentView.swift */,
+				67E580EA2AFBB580002E0621 /* Models */,
+				67A353EC2ACC41EB001DCC88 /* Views */,
+				67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */,
+				67A353EF2ACC45BC001DCC88 /* Info.plist */,
 				678466672ACC2902002A2371 /* Assets.xcassets */,
+				67E580E42AFBA9E6002E0621 /* weatherSymbolMappings.json */,
 				678466692ACC2902002A2371 /* WeatherVibes.entitlements */,
 				6784666A2ACC2902002A2371 /* Preview Content */,
-				67A353F02ACC475A001DCC88 /* WeatherVibesLocationManager.swift */,
 				67A353F52ACD7D59001DCC88 /* ApiClient.swift */,
 			);
 			path = WeatherVibes;
@@ -87,8 +96,19 @@
 			children = (
 				67A353ED2ACC422A001DCC88 /* FrontpageView.swift */,
 				67A353F72ACED239001DCC88 /* PlayerView.swift */,
+				678466652ACC2901002A2371 /* ContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		67E580EA2AFBB580002E0621 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67E580E82AFBB56B002E0621 /* Page.swift */,
+				67E580E62AFBB544002E0621 /* Weather.swift */,
+				67E580EB2AFBC976002E0621 /* Manifest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6784666C2ACC2902002A2371 /* Preview Assets.xcassets in Resources */,
+				67E580E52AFBA9E6002E0621 /* weatherSymbolMappings.json in Resources */,
 				678466682ACC2902002A2371 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,10 +184,13 @@
 			files = (
 				67A353EE2ACC422A001DCC88 /* FrontpageView.swift in Sources */,
 				678466662ACC2901002A2371 /* ContentView.swift in Sources */,
+				67E580E92AFBB56B002E0621 /* Page.swift in Sources */,
 				678466642ACC2901002A2371 /* WeatherVibesApp.swift in Sources */,
 				67A353F82ACED239001DCC88 /* PlayerView.swift in Sources */,
+				67E580EC2AFBC976002E0621 /* Manifest.swift in Sources */,
 				67A353F12ACC475A001DCC88 /* WeatherVibesLocationManager.swift in Sources */,
 				67A353F62ACD7D59001DCC88 /* ApiClient.swift in Sources */,
+				67E580E72AFBB544002E0621 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
