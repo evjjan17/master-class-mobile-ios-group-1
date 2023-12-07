@@ -187,6 +187,7 @@ struct FrontpageView: View {
                                                 
                                                 .accessibilityHint("Dobbeltrykk for å gå til episoden")
                                             }
+                                            .frame(maxWidth: .infinity)
                                             .padding()
                                             Spacer()
                                             AsyncImage(url: URL(string: plug.imageUrl)) { result in
@@ -207,6 +208,13 @@ struct FrontpageView: View {
                                                     }
                                                     .clipped()
                                                     .cornerRadius(8)
+                                                } else {
+                                                    RoundedRectangle(cornerRadius: 8)
+                                                        .fill(Color.white.opacity(0.1))
+                                                        .frame(width: 150, height: 150 * 9 / 16)
+                                                        .overlay {
+                                                            ProgressView()
+                                                        }
                                                 }
                                             }
                                             .padding(.trailing, 8)

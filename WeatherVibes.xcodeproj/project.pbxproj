@@ -23,6 +23,7 @@
 		E838FEA62B1F54D10048785B /* RadioProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEA52B1F54D10048785B /* RadioProvider.swift */; };
 		E838FEAE2B20ACC90048785B /* WeatherVibesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEAD2B20ACC90048785B /* WeatherVibesTests.swift */; };
 		E838FEBB2B20C0380048785B /* WeatherVibesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEBA2B20C0380048785B /* WeatherVibesUITests.swift */; };
+		E838FEC42B21CFA60048785B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEC32B21CFA60048785B /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		E838FEAD2B20ACC90048785B /* WeatherVibesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesTests.swift; sourceTree = "<group>"; };
 		E838FEB82B20C0370048785B /* WeatherVibesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherVibesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E838FEBA2B20C0380048785B /* WeatherVibesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesUITests.swift; sourceTree = "<group>"; };
+		E838FEC32B21CFA60048785B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				67E580E42AFBA9E6002E0621 /* weatherSymbolMappings.json */,
 				678466692ACC2902002A2371 /* WeatherVibes.entitlements */,
 				6784666A2ACC2902002A2371 /* Preview Content */,
+				E838FEC32B21CFA60048785B /* TestView.swift */,
 			);
 			path = WeatherVibes;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E838FEC42B21CFA60048785B /* TestView.swift in Sources */,
 				67A353EE2ACC422A001DCC88 /* FrontpageView.swift in Sources */,
 				E838FEA62B1F54D10048785B /* RadioProvider.swift in Sources */,
 				678466662ACC2901002A2371 /* ContentView.swift in Sources */,
