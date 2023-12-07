@@ -148,11 +148,10 @@
 			};
 			buildConfigurationList = 6784665B2ACC2901002A2371 /* Build configuration list for PBXProject "WeatherVibes" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = nb;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				nb,
 			);
 			mainGroup = 678466572ACC2901002A2371;
 			productRefGroup = 678466612ACC2901002A2371 /* Products */;
@@ -326,6 +325,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherVibes/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Vi trenger din lokasjon for å hente været der du er, akkurat nå.\"";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Skal hente possiosjon";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Trenger lokasjon";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -366,6 +367,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherVibes/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "\"Vi trenger din lokasjon for å hente været der du er, akkurat nå.\"";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Skal hente possiosjon";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Trenger lokasjon";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

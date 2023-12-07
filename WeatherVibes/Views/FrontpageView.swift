@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import AVKit
 
 // TODO:
 
@@ -15,9 +16,10 @@ import CoreLocation
 // [x] Navigere til valgt plug
 // [x] Lag detaljeside
 // [x] Bruk faktiske værikonene fra YR api'et
-// [] Endre weatherCategoryDict til å bruke enums
+// [x] Endre weatherCategoryDict til å bruke enums
 // [] Lag ViewModel for Plugs og episode til PlayerView
 // [] slå sammen alle sections fra en kategori
+// [] legg til playerRate for å endre hastighet,
 
 struct FrontpageView: View {
     
@@ -56,6 +58,18 @@ struct FrontpageView: View {
         case sun
         case partlyCloudy = "partly_clouded"
         case unknown
+        
+        var accessibilityLabel: String
+        {
+            switch self {
+            case .rain: "Regn"
+            case .clouded: "Overskyet"
+            case .snow: "Snø"
+            case .sun: "Sol"
+            case .partlyCloudy: "Delvis overskyet"
+            case .unknown: "Ukjent værforhold"
+            }
+        }
     }
     
     var body: some View {
@@ -67,6 +81,7 @@ struct FrontpageView: View {
                     .font(.system(size: 32))
                 HStack {
                     Image(systemName: "location")
+                        .accessibilityHidden(true)
                     Text(locationName?.name ?? "ingenting")
                 }
                 Spacer(minLength: 24)
@@ -77,16 +92,19 @@ struct FrontpageView: View {
                             Image(systemName: "drop")
                             Image(systemName: "wind")
                         }
+                        .accessibilityHidden(true)
                         VStack (alignment: .leading, spacing: 10) {
                                 Text("\(String(format: "%.1f", weather.temperature.value))°C")
                                 Text("\(String(format: "%.1f", weather.precipitation.value)) mm")
                                 Text("\(String(format: "%.1f", weather.wind.speed)) m/s")
                         }
+                        .accessibilityElement(children: .combine)
                         Spacer()
                         VStack {
                             Image(systemName: weatherIconDict[self.weatherCategory] ?? "")
                                 .font(.system(size: 100))
                                 .padding(.trailing, 20)
+                                .accessibilityLabel(weatherCategory.accessibilityLabel)
                         }
                     }
                     .padding(.horizontal, 26)
@@ -95,6 +113,8 @@ struct FrontpageView: View {
                     Text(category)
                         .font(.title3)
                         .foregroundStyle(.white)
+                        .padding(.top, 8)
+                        .accessibilityLabel("Vi anbefaler kategorien \(category)")
                 }
                 VStack{
                     Divider()
@@ -115,6 +135,9 @@ struct FrontpageView: View {
                                                     .bold()
                                                 Text(podcastEpisode.podcastEpisodeTitle)
                                                     .font(.system(size: 14))
+                                                    .lineLimit(1)
+                                                
+                                                .accessibilityHint("Dobbeltrykk for å gå til episoden")
                                             }
                                             .padding()
                                             Spacer()
@@ -123,14 +146,23 @@ struct FrontpageView: View {
                                                     Text("Kunne ikke laste bilde")
                                                 }
                                                 if let image = result.image {
-                                                    image
-                                                        .resizable()
-                                                        .aspectRatio(16 / 9, contentMode: .fit)
-                                                        .frame(width: 150)
-                                                        .cornerRadius(10)
+                                                    ZStack {
+                                                        image
+                                                            .resizable()
+                                                            .aspectRatio(16 / 9, contentMode: .fit)
+                                                            .frame(width: 150, height: 150 * 9 / 16)
+                                                            .blur(radius: 8)
+                                                        image
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fit)
+                                                            .frame(width: 150, height: 150 * 9 / 16)
+                                                    }
+                                                    .clipped()
+                                                    .cornerRadius(8)
                                                 }
                                             }
                                             .padding(.trailing, 8)
+                                            .padding(.vertical, 8)
                                         }
                                         .background(Color(red: 0.2, green: 0.3, blue: 0.3))
                                         .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
@@ -138,6 +170,7 @@ struct FrontpageView: View {
                                         .padding(.horizontal)
                                     }
                                     .foregroundStyle(.white)
+                                    
                                 }
                             }
                         }
@@ -148,8 +181,10 @@ struct FrontpageView: View {
             .foregroundStyle(.white)
         }
         .navigationTitle("Weather Vibes")
+        .accentColor(.white)
         .task {
-            if let coordinate = manager.locations?.last?.coordinate {
+            let coordinate: CLLocationCoordinate2D =  manager.locations?.last?.coordinate ?? CLLocationCoordinate2D(latitude:59.9348, longitude: 10.721)
+             
                 manager.geocode(latitude: coordinate.latitude, longitude: coordinate.longitude) { (placemark, error) in
                     guard let placemark = placemark?.first else { return }
                     self.locationName = placemark
@@ -161,7 +196,8 @@ struct FrontpageView: View {
                         self.plugs = plugs
                     }
                 }
-            }
+            try! AVAudioSession.sharedInstance().setCategory(.playback)
+            try! AVAudioSession.sharedInstance().setActive(true)
         }
     }
         

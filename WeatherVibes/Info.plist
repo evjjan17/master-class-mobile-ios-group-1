@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSLocationUsageDescription</key>
-    <string>Skal hente possiosjon</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Trenger lokasjon</string>
 	<key>NSServices</key>
 	<array>
 		<dict/>

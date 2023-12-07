@@ -28,9 +28,13 @@ class ApiClient {
 
         do {
             let page = try JSONDecoder().decode(Page.self, from: data)
-            print(page)
-            //if let plugs = page.sections.included.plugs{
-            return page.sections[1].included.plugs
+            var plugs: [Page.PageSection.SectionIncluded.SectionPlug] = []
+            page.sections.forEach { section in
+                section.included.plugs.forEach { plug in
+                    plugs.append(plug)
+                }
+            }
+            return plugs
            // }
         } catch {
             print(error)
