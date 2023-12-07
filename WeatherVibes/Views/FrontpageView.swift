@@ -21,56 +21,105 @@ import AVKit
 // [] slå sammen alle sections fra en kategori
 // [] legg til playerRate for å endre hastighet,
 
+enum Category: String {
+    case dokumentar
+    case forstaa
+    case kultur
+    case humor
+    case hoerespill
+    
+    var displayName: String
+    {
+        switch self {
+        case .dokumentar: "Dokumentar"
+        case .forstaa: "Nyheter og sport"
+        case .kultur: "Kultur"
+        case .humor: "Humor"
+        case .hoerespill: "Hørespill"
+        }
+    }
+}
+
+enum WeatherCategory: String {
+    case rain
+    case clouded
+    case snow
+    case sun
+    case partlyCloudy = "partly_clouded"
+    case unknown
+    
+    var accessibilityLabel: String
+    {
+        switch self {
+        case .rain: "Regn"
+        case .clouded: "Overskyet"
+        case .snow: "Snø"
+        case .sun: "Sol"
+        case .partlyCloudy: "Delvis overskyet"
+        case .unknown: "Ukjent værforhold"
+        }
+    }
+}
+
+let weatherCategoryDict: [WeatherCategory: Category] = [.rain: .dokumentar, .clouded: .forstaa, .snow: .kultur, .sun: .humor, .partlyCloudy: .hoerespill]
+let weatherIconDict: [WeatherCategory: String] = [.rain: "cloud.drizzle", .clouded: "cloud", .snow: "snowflake", .sun: "sun.max", .partlyCloudy: "cloud.sun"]
+
+class FrontpageCoordinator: ObservableObject {
+    @ObservedObject var manager = WeatherVibesLocationManager()
+    var weatherProvider: WeatherProvider
+    var radioProvider: RadioProvider
+    @Published var weather: WeatherViewModel? 
+    @Published var plugs: [PodcastViewModel] = []
+    @Published var locationName: CLPlacemark?
+    @Published var weatherCategory: WeatherCategory = .unknown
+    
+    init(weatherProvider: WeatherProvider, radioProvider: RadioProvider) {
+        self.weatherProvider = weatherProvider
+        self.radioProvider = radioProvider
+        Task {
+            if let coordinate = manager.locations?.last?.coordinate {
+                manager.geocode(latitude: coordinate.latitude, longitude: coordinate.longitude) { (placemark, error) in
+                    guard let placemark = placemark?.first else { return }
+                    self.locationName = placemark
+                }
+                
+                weather = try await self.weatherProvider.fetchWeather(location: coordinate)
+                if let weather {
+                    let category = determineWeatherCategory(weather: weather)
+                    plugs = try await self.radioProvider.fetchPodcastEpisodeList(category: category.rawValue) ?? []
+                }
+            }
+        }
+    }
+
+    func determineWeatherCategory(weather: WeatherViewModel) -> Category {
+        if let path = Bundle.main.path(forResource: "weatherSymbolMappings", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                if let jsonResult = jsonResult as? Dictionary<String, [String]> {
+                    let weatherSymbol = weather.symbolCode
+                    for (weather, weatherSymbols) in jsonResult {
+                        if weatherSymbols.contains(weatherSymbol) {
+                            self.weatherCategory = WeatherCategory(rawValue: weather) ?? .unknown
+                            return weatherCategoryDict[self.weatherCategory] ?? .forstaa
+                        }
+                    }
+                }
+            }
+            catch {
+                print(error)
+                return .humor
+            }
+        } 
+        return .humor
+    }
+    
+}
+
 struct FrontpageView: View {
     
-    @ObservedObject var manager = WeatherVibesLocationManager()
-    @State var weather: Weather?
-    @State var plugs: [Page.PageSection.SectionIncluded.SectionPlug] = []
-    @State var locationName: CLPlacemark?
-    @State var weatherCategory: WeatherCategory = .unknown
-    
-    let weatherCategoryDict: [WeatherCategory: Category] = [.rain: .dokumentar, .clouded: .forstaa, .snow: .kultur, .sun: .humor, .partlyCloudy: .hoerespill]
-    let weatherIconDict: [WeatherCategory: String] = [.rain: "cloud.drizzle", .clouded: "cloud", .snow: "snowflake", .sun: "sun.max", .partlyCloudy: "cloud.sun"]
-    
-    enum Category: String {
-        case dokumentar
-        case forstaa
-        case kultur
-        case humor
-        case hoerespill
-        
-        var displayName: String
-        {
-            switch self {
-            case .dokumentar: "Dokumentar"
-            case .forstaa: "Nyheter og sport"
-            case .kultur: "Kultur"
-            case .humor: "Humor"
-            case .hoerespill: "Hørespill"
-            }
-        }
-    }
-    
-    enum WeatherCategory: String {
-        case rain
-        case clouded
-        case snow
-        case sun
-        case partlyCloudy = "partly_clouded"
-        case unknown
-        
-        var accessibilityLabel: String
-        {
-            switch self {
-            case .rain: "Regn"
-            case .clouded: "Overskyet"
-            case .snow: "Snø"
-            case .sun: "Sol"
-            case .partlyCloudy: "Delvis overskyet"
-            case .unknown: "Ukjent værforhold"
-            }
-        }
-    }
+    @ObservedObject var coordinator: FrontpageCoordinator
     
     var body: some View {
         
@@ -82,10 +131,10 @@ struct FrontpageView: View {
                 HStack {
                     Image(systemName: "location")
                         .accessibilityHidden(true)
-                    Text(locationName?.name ?? "ingenting")
+                    Text(coordinator.locationName?.name ?? "ingenting")
                 }
                 Spacer(minLength: 24)
-                if let weather {
+                if let weather = coordinator.weather {
                     HStack {
                         VStack(spacing: 10) {
                             Image(systemName: "thermometer.low")
@@ -94,22 +143,22 @@ struct FrontpageView: View {
                         }
                         .accessibilityHidden(true)
                         VStack (alignment: .leading, spacing: 10) {
-                                Text("\(String(format: "%.1f", weather.temperature.value))°C")
-                                Text("\(String(format: "%.1f", weather.precipitation.value)) mm")
-                                Text("\(String(format: "%.1f", weather.wind.speed)) m/s")
+                                Text("\(String(format: "%.1f", weather.temperature))°C")
+                                Text("\(String(format: "%.1f", weather.precipitation)) mm")
+                                Text("\(String(format: "%.1f", weather.wind)) m/s")
                         }
                         .accessibilityElement(children: .combine)
                         Spacer()
                         VStack {
-                            Image(systemName: weatherIconDict[self.weatherCategory] ?? "")
+                            Image(systemName: weatherIconDict[coordinator.weatherCategory] ?? "")
                                 .font(.system(size: 100))
                                 .padding(.trailing, 20)
-                                .accessibilityLabel(weatherCategory.accessibilityLabel)
+                                .accessibilityLabel(coordinator.weatherCategory.accessibilityLabel)
                         }
                     }
                     .padding(.horizontal, 26)
                 }
-                if let category = weatherCategoryDict[self.weatherCategory]?.displayName {
+                if let category = weatherCategoryDict[coordinator.weatherCategory]?.displayName {
                     Text(category)
                         .font(.title3)
                         .foregroundStyle(.white)
@@ -122,18 +171,17 @@ struct FrontpageView: View {
                         .padding(.horizontal)
                     ScrollView() {
                         VStack(spacing: 20) {
-                            ForEach(plugs) { plug in
-                                if let podcastEpisode = plug.podcastEpisode {
+                            ForEach(coordinator.plugs) { plug in
                                     NavigationLink {
-                                        PlayerView(podcastEpisode: podcastEpisode)
+                                        PlayerView(coordinator: PlayerViewCoordinator(podcastEpisode: plug))
                                     }
                                     label: {
                                         HStack {
                                             VStack(spacing: 8) {
-                                                Text(podcastEpisode.podcastTitle)
+                                                Text(plug.podcastTitle)
                                                     .font(.title3)
                                                     .bold()
-                                                Text(podcastEpisode.podcastEpisodeTitle)
+                                                Text(plug.podcastEpisodeTitle)
                                                     .font(.system(size: 14))
                                                     .lineLimit(1)
                                                 
@@ -141,7 +189,7 @@ struct FrontpageView: View {
                                             }
                                             .padding()
                                             Spacer()
-                                            AsyncImage(url: URL(string: podcastEpisode.imageUrl)) { result in
+                                            AsyncImage(url: URL(string: plug.imageUrl)) { result in
                                                 if result.error != nil {
                                                     Text("Kunne ikke laste bilde")
                                                 }
@@ -170,8 +218,9 @@ struct FrontpageView: View {
                                         .padding(.horizontal)
                                     }
                                     .foregroundStyle(.white)
-                                    
-                                }
+                                    .accessibilityElement()
+                                    .accessibilityAddTraits(.isButton)
+                                    .accessibilityIdentifier("plug_button")
                             }
                         }
                     }
@@ -181,49 +230,12 @@ struct FrontpageView: View {
             .foregroundStyle(.white)
         }
         .navigationTitle("Weather Vibes")
-        .accentColor(.white)
-        .task {
-            let coordinate: CLLocationCoordinate2D =  manager.locations?.last?.coordinate ?? CLLocationCoordinate2D(latitude:59.9348, longitude: 10.721)
-             
-                manager.geocode(latitude: coordinate.latitude, longitude: coordinate.longitude) { (placemark, error) in
-                    guard let placemark = placemark?.first else { return }
-                    self.locationName = placemark
-                }
-                if let weather = try? await ApiClient.fetchWeather(location: coordinate) {
-                    self.weather = weather
-                    determineWeatherCategory(weather: weather)
-                    if let plugs = try? await ApiClient.fetchPlugs(from: weatherCategoryDict[self.weatherCategory]?.rawValue ?? "forstaa") {
-                        self.plugs = plugs
-                    }
-                }
-            try! AVAudioSession.sharedInstance().setCategory(.playback)
-            try! AVAudioSession.sharedInstance().setActive(true)
-        }
-    }
-        
-    private func determineWeatherCategory(weather: Weather) {
-        if let path = Bundle.main.path(forResource: "weatherSymbolMappings", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, [String]> {
-                    let weatherSymbol = weather.symbolCode.next1Hour
-                    for (weather, weatherSymbols) in jsonResult {
-                        if weatherSymbols.contains(weatherSymbol) {
-                            self.weatherCategory = WeatherCategory(rawValue: weather) ?? .unknown
-                        }
-                    }
-                }
-            }
-            catch {
-                //
-            }
-        }
+        .tint(Color.white)
     }
 }
 
-
-#Preview {
-    FrontpageView()
-}
+//
+//#Preview {
+//    FrontpageView()
+//}
 

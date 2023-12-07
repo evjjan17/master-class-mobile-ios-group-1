@@ -19,7 +19,28 @@
 		67E580E72AFBB544002E0621 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580E62AFBB544002E0621 /* Weather.swift */; };
 		67E580E92AFBB56B002E0621 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580E82AFBB56B002E0621 /* Page.swift */; };
 		67E580EC2AFBC976002E0621 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E580EB2AFBC976002E0621 /* Manifest.swift */; };
+		E838FEA42B1F54A60048785B /* WeatherProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEA32B1F54A60048785B /* WeatherProvider.swift */; };
+		E838FEA62B1F54D10048785B /* RadioProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEA52B1F54D10048785B /* RadioProvider.swift */; };
+		E838FEAE2B20ACC90048785B /* WeatherVibesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEAD2B20ACC90048785B /* WeatherVibesTests.swift */; };
+		E838FEBB2B20C0380048785B /* WeatherVibesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E838FEBA2B20C0380048785B /* WeatherVibesUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E838FEAF2B20ACC90048785B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 678466582ACC2901002A2371 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6784665F2ACC2901002A2371;
+			remoteInfo = WeatherVibes;
+		};
+		E838FEBE2B20C0380048785B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 678466582ACC2901002A2371 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6784665F2ACC2901002A2371;
+			remoteInfo = WeatherVibes;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		678466602ACC2901002A2371 /* WeatherVibes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherVibes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,10 +58,30 @@
 		67E580E62AFBB544002E0621 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		67E580E82AFBB56B002E0621 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		67E580EB2AFBC976002E0621 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
+		E838FEA32B1F54A60048785B /* WeatherProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherProvider.swift; sourceTree = "<group>"; };
+		E838FEA52B1F54D10048785B /* RadioProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioProvider.swift; sourceTree = "<group>"; };
+		E838FEAB2B20ACC90048785B /* WeatherVibesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherVibesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E838FEAD2B20ACC90048785B /* WeatherVibesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesTests.swift; sourceTree = "<group>"; };
+		E838FEB82B20C0370048785B /* WeatherVibesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherVibesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E838FEBA2B20C0380048785B /* WeatherVibesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVibesUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6784665D2ACC2901002A2371 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E838FEA82B20ACC90048785B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E838FEB52B20C0370048785B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				678466622ACC2901002A2371 /* WeatherVibes */,
+				E838FEAC2B20ACC90048785B /* WeatherVibesTests */,
+				E838FEB92B20C0370048785B /* WeatherVibesUITests */,
 				678466612ACC2901002A2371 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				678466602ACC2901002A2371 /* WeatherVibes.app */,
+				E838FEAB2B20ACC90048785B /* WeatherVibesTests.xctest */,
+				E838FEB82B20C0370048785B /* WeatherVibesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +114,7 @@
 		678466622ACC2901002A2371 /* WeatherVibes */ = {
 			isa = PBXGroup;
 			children = (
+				E838FEA22B1F54620048785B /* Providers */,
 				678466632ACC2901002A2371 /* WeatherVibesApp.swift */,
 				67E580EA2AFBB580002E0621 /* Models */,
 				67A353EC2ACC41EB001DCC88 /* Views */,
@@ -78,7 +124,6 @@
 				67E580E42AFBA9E6002E0621 /* weatherSymbolMappings.json */,
 				678466692ACC2902002A2371 /* WeatherVibes.entitlements */,
 				6784666A2ACC2902002A2371 /* Preview Content */,
-				67A353F52ACD7D59001DCC88 /* ApiClient.swift */,
 			);
 			path = WeatherVibes;
 			sourceTree = "<group>";
@@ -111,6 +156,32 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E838FEA22B1F54620048785B /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				67A353F52ACD7D59001DCC88 /* ApiClient.swift */,
+				E838FEA32B1F54A60048785B /* WeatherProvider.swift */,
+				E838FEA52B1F54D10048785B /* RadioProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		E838FEAC2B20ACC90048785B /* WeatherVibesTests */ = {
+			isa = PBXGroup;
+			children = (
+				E838FEAD2B20ACC90048785B /* WeatherVibesTests.swift */,
+			);
+			path = WeatherVibesTests;
+			sourceTree = "<group>";
+		};
+		E838FEB92B20C0370048785B /* WeatherVibesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E838FEBA2B20C0380048785B /* WeatherVibesUITests.swift */,
+			);
+			path = WeatherVibesUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,6 +202,42 @@
 			productReference = 678466602ACC2901002A2371 /* WeatherVibes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E838FEAA2B20ACC90048785B /* WeatherVibesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E838FEB12B20ACC90048785B /* Build configuration list for PBXNativeTarget "WeatherVibesTests" */;
+			buildPhases = (
+				E838FEA72B20ACC90048785B /* Sources */,
+				E838FEA82B20ACC90048785B /* Frameworks */,
+				E838FEA92B20ACC90048785B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E838FEB02B20ACC90048785B /* PBXTargetDependency */,
+			);
+			name = WeatherVibesTests;
+			productName = WeatherVibesTests;
+			productReference = E838FEAB2B20ACC90048785B /* WeatherVibesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E838FEB72B20C0370048785B /* WeatherVibesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E838FEC02B20C0380048785B /* Build configuration list for PBXNativeTarget "WeatherVibesUITests" */;
+			buildPhases = (
+				E838FEB42B20C0370048785B /* Sources */,
+				E838FEB52B20C0370048785B /* Frameworks */,
+				E838FEB62B20C0370048785B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E838FEBF2B20C0380048785B /* PBXTargetDependency */,
+			);
+			name = WeatherVibesUITests;
+			productName = WeatherVibesUITests;
+			productReference = E838FEB82B20C0370048785B /* WeatherVibesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -143,6 +250,14 @@
 				TargetAttributes = {
 					6784665F2ACC2901002A2371 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					E838FEAA2B20ACC90048785B = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 6784665F2ACC2901002A2371;
+					};
+					E838FEB72B20C0370048785B = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 6784665F2ACC2901002A2371;
 					};
 				};
 			};
@@ -159,6 +274,8 @@
 			projectRoot = "";
 			targets = (
 				6784665F2ACC2901002A2371 /* WeatherVibes */,
+				E838FEAA2B20ACC90048785B /* WeatherVibesTests */,
+				E838FEB72B20C0370048785B /* WeatherVibesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -174,6 +291,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E838FEA92B20ACC90048785B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E838FEB62B20C0370048785B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -182,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A353EE2ACC422A001DCC88 /* FrontpageView.swift in Sources */,
+				E838FEA62B1F54D10048785B /* RadioProvider.swift in Sources */,
 				678466662ACC2901002A2371 /* ContentView.swift in Sources */,
 				67E580E92AFBB56B002E0621 /* Page.swift in Sources */,
 				678466642ACC2901002A2371 /* WeatherVibesApp.swift in Sources */,
@@ -190,10 +322,40 @@
 				67A353F12ACC475A001DCC88 /* WeatherVibesLocationManager.swift in Sources */,
 				67A353F62ACD7D59001DCC88 /* ApiClient.swift in Sources */,
 				67E580E72AFBB544002E0621 /* Weather.swift in Sources */,
+				E838FEA42B1F54A60048785B /* WeatherProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E838FEA72B20ACC90048785B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E838FEAE2B20ACC90048785B /* WeatherVibesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E838FEB42B20C0370048785B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E838FEBB2B20C0380048785B /* WeatherVibesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E838FEB02B20ACC90048785B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6784665F2ACC2901002A2371 /* WeatherVibes */;
+			targetProxy = E838FEAF2B20ACC90048785B /* PBXContainerItemProxy */;
+		};
+		E838FEBF2B20C0380048785B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6784665F2ACC2901002A2371 /* WeatherVibes */;
+			targetProxy = E838FEBE2B20C0380048785B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6784666D2ACC2902002A2371 /* Debug */ = {
@@ -394,6 +556,86 @@
 			};
 			name = Release;
 		};
+		E838FEB22B20ACC90048785B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UXK7X5R9KJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.nrk.WeatherVibesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherVibes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeatherVibes";
+			};
+			name = Debug;
+		};
+		E838FEB32B20ACC90048785B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UXK7X5R9KJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.nrk.WeatherVibesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherVibes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeatherVibes";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E838FEC12B20C0380048785B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UXK7X5R9KJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.nrk.WeatherVibesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeatherVibes;
+			};
+			name = Debug;
+		};
+		E838FEC22B20C0380048785B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UXK7X5R9KJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = no.nrk.WeatherVibesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WeatherVibes;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +653,24 @@
 			buildConfigurations = (
 				678466702ACC2902002A2371 /* Debug */,
 				678466712ACC2902002A2371 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E838FEB12B20ACC90048785B /* Build configuration list for PBXNativeTarget "WeatherVibesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E838FEB22B20ACC90048785B /* Debug */,
+				E838FEB32B20ACC90048785B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E838FEC02B20C0380048785B /* Build configuration list for PBXNativeTarget "WeatherVibesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E838FEC12B20C0380048785B /* Debug */,
+				E838FEC22B20C0380048785B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
