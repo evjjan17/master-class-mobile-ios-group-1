@@ -60,6 +60,7 @@ class PlayerViewCoordinator: ObservableObject{
     func seek(seconds: Double) {
         let myTime = CMTime(seconds: audioPlayer.currentTime().seconds + seconds, preferredTimescale: 60000)
         audioPlayer.seek(to: myTime, toleranceBefore: .zero, toleranceAfter: .zero)
+        self.secondsPlayed = Int(self.audioPlayer.currentTime().seconds + seconds)
     }
 }
 
